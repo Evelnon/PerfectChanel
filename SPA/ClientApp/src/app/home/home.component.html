@@ -1,0 +1,29 @@
+<h1>Todo list page</h1>
+<p></p>
+<div style="display: table;">
+  <div class="pendingContainer">
+    <span>Pending Tasks <input type="button" value="Add Pending Task" (click)="showAddTaskMenu()" [ngStyle]="{'visibility':showAddTaskMenuStatus == true ? 'visible' : 'hidden'}" /></span>
+    <div class="addTodo" [ngStyle]="{'visibility':showAddTaskMenuStatus== true ? 'hidden' : 'visible', 'height': showAddTaskMenuStatus== true ? '0px' : '80px'}">
+      Description:<input type="text" hint="Description" [(ngModel)]="descriptionText" />
+
+      <input type="button" value="Cancel" (click)="cancelSave()" />
+      <input type="button" value="Save Task" (click)="saveTask()" />
+    </div>
+    <div *ngFor="let todoItem of filter(0)" [ngStyle]="{'top':showAddTaskMenuStatus== true ? '0px' : '60px'}">
+      <todo-item [description]="todoItem.description" [status]="0" (click)="updateTaskStatus(todoItem)"></todo-item>
+    </div>
+
+  </div>
+  <div class="completedContainer">
+    <span>Completed Tasks</span>
+    <div [ngStyle]="{'margin-top':'45px'}">
+      <div *ngFor="let todoItem of filter(1)">
+        <todo-item [description]="todoItem.description" [status]="1" (click)="updateTaskStatus(todoItem)"></todo-item>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
